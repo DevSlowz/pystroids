@@ -1,6 +1,6 @@
 import pygame
 from constants import *
-
+from player import Player
 def main():
 
     # initialize all pygame modules
@@ -8,6 +8,14 @@ def main():
 
     # Create screen to render game
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+
+
+    clock = pygame.time.Clock()
+    dt = 0
+
+    # X and Y values passed in
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+
 
     # Game loop
     while True:
@@ -17,9 +25,18 @@ def main():
             if event.type == pygame.QUIT:
                 return
 
-        # Cover the entire screen
+        # Background of game set to black
         screen.fill("black")
+        # Draws player to screen
+        player.draw(screen)
 
+        # update the screen
+        pygame.display.flip()
+        
+        # Calculates the detla time of the previously generated frame - limit 60
+        dt = clock.tick(60) / 1000
+
+        
     
 
 
