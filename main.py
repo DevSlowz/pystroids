@@ -42,6 +42,7 @@ def main():
 
         # Background of game set to black
         screen.fill("black")
+        
         # Draws player to screen
         # Draw all the drawables to the screen
         # player.draw(screen)
@@ -50,6 +51,11 @@ def main():
 
         # Update plaer postion before each frame is generated 
         updateable.update(dt)
+
+        for asteroid in asteroids:
+            if asteroid.collison_check(player):
+                print("GAME OVER!")
+                return 
 
         # update the screen
         pygame.display.flip()
