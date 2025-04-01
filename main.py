@@ -5,6 +5,8 @@ from asteroid import Asteroid
 from asteroidfield import AsteroidField
 from shot import Shot
 
+import random
+
 def main():
 
     # initialize all pygame modules
@@ -31,7 +33,7 @@ def main():
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
     # X and Y values passed in for asteroid
-    asteroid = AsteroidField()
+    asteroid_field = AsteroidField()
 
 
 
@@ -59,11 +61,11 @@ def main():
             if asteroid.collison_check(player):
                 print("GAME OVER!")
                 return 
-        for asteroid in asteroids:
+
             for shot in shots:
-                if shot.collison_check(asteroid):
+                if  asteroid.collison_check(shot):
                     shot.kill()
-                    asteroid.kill()
+                    asteroid.split()
 
         # update the screen
         pygame.display.flip()
